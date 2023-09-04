@@ -8,6 +8,7 @@ import {
 	Button,
 	Menu,
 	MenuItem,
+	Link,
 	// Avatar,
 	// Tooltip,
 } from "@mui/material";
@@ -22,7 +23,7 @@ const navLinks: string[] = [
 ];
 // const userOptions: string[] = ["Profil", "Ustawienia", "Wyloguj"];
 
-export const Navbar: React.FC = () => {
+export const Header: React.FC = () => {
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 	// const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -48,25 +49,21 @@ export const Navbar: React.FC = () => {
 				disableGutters
 				sx={{ display: "flex", justifyContent: "space-between" }}>
 				<Box sx={{ display: "flex" }}>
-					<IconButton color='inherit' href='/'>
+					<IconButton href='/'>
 						<MedicalInformationIcon fontSize='large' />
 					</IconButton>
-					<Typography
-						variant='h1'
-						component='a'
-						href='/'
-						sx={{
-							textDecoration: "none",
-						}}>
-						Medi-Jobs
-					</Typography>
+					<Link href='/'>
+						<Typography variant='h1' component='h1'>
+							Medi-Jobs
+						</Typography>
+					</Link>
 				</Box>
 
 				{/* Navigation for larger screens */}
 				<Box sx={{ display: { xs: "none", md: "flex" } }}>
 					{navLinks.map((link) => (
-						<Button key={link} color='inherit'>
-							<Typography variant='h6' sx={{ paddingRight: ".6rem" }}>
+						<Button key={link}>
+							<Typography variant='h6' sx={{ paddingRight: ".2rem" }}>
 								{link}
 							</Typography>
 						</Button>
@@ -75,7 +72,7 @@ export const Navbar: React.FC = () => {
 
 				{/* Navigation for smaller screens */}
 				<Box sx={{ display: { xs: "flex", md: "none" } }}>
-					<IconButton color='inherit' onClick={handleOpenNavMenu}>
+					<IconButton onClick={handleOpenNavMenu}>
 						<DensityMediumIcon fontSize='large' />
 					</IconButton>
 					<Menu

@@ -39,7 +39,7 @@ export const SpecializationsSidebar: React.FC = () => {
 				{Object.entries(categories).map(([category, Icon], index) => (
 					<ListItem key={index} button>
 						<ListItemIcon>
-							<Icon />
+							<Icon color="secondary" />
 						</ListItemIcon>
 						<ListItemText primary={category} />
 					</ListItem>

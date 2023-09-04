@@ -1,8 +1,8 @@
 import React from "react";
-import HomeModule from "../modules/home/index";
+import {Home} from "@/pages/home";
 
 const IndexPage: React.FC = () => {
-	return <HomeModule />;
+	return <Home />;
 };
 
 export default IndexPage;

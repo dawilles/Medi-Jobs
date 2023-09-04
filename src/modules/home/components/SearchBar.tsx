@@ -21,11 +21,11 @@ export const SearchBar: React.FC = () => {
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",
-          textAlign: "center",
-          padding: "1rem"
+					textAlign: "center",
+					padding: "1rem",
 				}}>
-				<Typography variant='h2' component='h3'sx={{padding:"1rem"}}>
-					Znajdź swoją wymarzoną pracę
+				<Typography variant='h2' component='h3' sx={{ padding: "1rem" }}>
+					Znajdź swoją wymarzoną pracę właśnie dziś!
 				</Typography>
 				<form
 					onSubmit={formik.handleSubmit}
@@ -36,8 +36,9 @@ export const SearchBar: React.FC = () => {
 						name='query'
 						value={formik.values.query}
 						onChange={formik.handleChange}
+						style={{ flex: 1 }}
 					/>
-					<Button variant='contained' color='primary' type='submit'>
+					<Button variant='contained' color='secondary' type='submit'>
 						Szukaj
 					</Button>
 				</form>

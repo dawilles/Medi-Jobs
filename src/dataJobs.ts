@@ -327,4 +327,49 @@ export const jobAds = [
 		isActive: true,
 		expiryDate: "2023-09-01",
 	},
+	{
+		id: 16,
+		category: "Lekarze",
+		dateAdded: "2023-09-02",
+		title: "Lekarz - Część etatu",
+		description:
+			"Szukamy lekarza specjalisty medycyny rodzinnej do naszej przychodni w Warszawie. Oferujemy atrakcyjne warunki zatrudnienia, pół etatu oraz przyjazne środowisko pracy.",
+		contractType: "Część etatu",
+		salary: {
+			from: 7411,
+			to: 15142,
+			currency: "PLN",
+			negotiable: false,
+		},
+		user: {
+			username: "engiWorks",
+			email: "sales@salesmasters.com",
+		},
+		location: "Wrocław",
+		isActive: true,
+		expiryDate: "2023-09-01",
+	},
+	{
+		id: 17,
+		category: "Lekarze",
+		dateAdded: "2023-08-29",
+		title: "Lekarz Specjalista Medycyny Ratowniczej",
+		description:
+			"Szukamy lekarza specjalisty medycyny ratowniczej do naszej przychodni w Warszawie. Oferujemy atrakcyjne warunki zatrudnienia, pełny etat oraz przyjazne środowisko pracy.",
+		contractType: "Pełny etat",
+		salary: {
+			from: 10000,
+			to: 17000,
+			currency: "PLN",
+			negotiable: true,
+		},
+		user: {
+			username: "klinikaMedicus",
+			email: "kontakt@klinikamedicus.pl",
+		},
+		location: "Warszawa",
+		isActive: true,
+		expiryDate: "2023-08-29",
+	},
+	
 ];
