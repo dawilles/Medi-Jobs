@@ -14,19 +14,18 @@ export const Home: React.FC = () => {
 	return (
 		<>
 			<Header />
-
 			<Grid container spacing={2}>
 				<Grid
 					item
 					xs={false}
 					sm={3}
-					md={3}
+					md={2}
 					sx={{
 						display: { xs: "none", sm: "flex" },
 					}}>
 					<SpecializationsSidebar />
 				</Grid>
-				<Grid item xs={12} sm={9} md={9}>
+				<Grid item xs={12} sm={9} md={10}>
 					<Box
 						mt={6}
 						sx={{
@@ -36,7 +35,7 @@ export const Home: React.FC = () => {
 						<SearchBar />
 					</Box>
 					{latestJobs.map((job: JobAd) => (
-						<Box key={job.id} p={3}>
+						<Box key={job.id} p={3} mr={4} ml={4} sx={{ minWidth: "28rem" }}>
 							<JobBanner job={job} />
 						</Box>
 					))}

@@ -4,12 +4,14 @@ import type { JobAd } from "@/types";
 import { JobCard } from "@/components/job-components/JobCard";
 import { GetStaticPropsContext } from "next";
 import { Header } from "@/components/common/Header";
+import { Footer } from "@/components/common/Footer";
 
 const JobPage: React.FC<{ job: JobAd }> = ({ job }) => {
 	return (
 		<>
 			<Header />
 			<JobCard job={job} />
+			<Footer />
 		</>
 	);
 };

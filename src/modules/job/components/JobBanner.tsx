@@ -12,56 +12,59 @@ type JobBannerProps = {
 
 export const JobBanner: React.FC<JobBannerProps> = ({ job }) => {
 	return (
-		<Link href={`/jobpage/${job.id}`} passHref>
-			<Paper elevation={5}>
-				<Box
+		<Paper elevation={5}>
+			<Box
+				sx={{
+					display: "flex",
+					p: 2,
+				}}>
+				<CardContent
 					sx={{
-						display: "flex",
-						p: 2,
+						flex: 1,
 					}}>
-					<CardContent
-						sx={{
-							flex: 1,
-						}}>
+					<Link
+						href={`/jobpage/${job.id}`}
+						passHref
+						style={{ textDecoration: "none" }}>
 						<Typography variant='h3'>{job.title}</Typography>
-						<Typography variant='h4' color='text.secondary'>
-							{job.user.username}
-						</Typography>
-						<Typography variant='body2' color='text.secondary' mt={1}>
-							{`Data dodania: ${job.dateAdded}`}
-						</Typography>
-					</CardContent>
-					<CardContent
-						sx={{
-							flex: 1,
-						}}>
-						<Box
-							sx={{
-								display: "flex",
-								alignItems: "center",
-								mt: 1,
-							}}>
-							<LocationOnIcon />
-							<Typography variant='h5'>{job.location}</Typography>
-						</Box>
-						<Box sx={{ display: "flex", alignItems: "center", pt: 1 }}>
-							<AttachMoneyIcon />
-							<Typography variant='h5'>{`${job.salary.from} - ${job.salary.to} ${job.salary.currency}`}</Typography>
-						</Box>
-					</CardContent>
+					</Link>
+					<Typography variant='h4' color='text.secondary'>
+						{job.user.username}
+					</Typography>
+					<Typography variant='body2' color='text.secondary' mt={1}>
+						{`Data dodania: ${job.dateAdded}`}
+					</Typography>
+				</CardContent>
+				<CardContent
+					sx={{
+						flex: 1,
+					}}>
 					<Box
 						sx={{
 							display: "flex",
-							justifyContent: "flex-end",
-							alignItems: "flex-start",
-							flexShrink: 0,
+							alignItems: "center",
+							mt: 1,
 						}}>
-						<IconButton aria-label='save job'>
-							<StarBorderIcon color='secondary' />
-						</IconButton>
+						<LocationOnIcon />
+						<Typography variant='h5'>{job.location}</Typography>
 					</Box>
+					<Box sx={{ display: "flex", alignItems: "center", pt: 1 }}>
+						<AttachMoneyIcon />
+						<Typography variant='h5'>{`${job.salary.from} - ${job.salary.to} ${job.salary.currency}`}</Typography>
+					</Box>
+				</CardContent>
+				<Box
+					sx={{
+						display: "flex",
+						justifyContent: "flex-end",
+						alignItems: "flex-start",
+						flexShrink: 0,
+					}}>
+					<IconButton aria-label='save job'>
+						<StarBorderIcon color='secondary' />
+					</IconButton>
 				</Box>
-			</Paper>
-		</Link>
+			</Box>
+		</Paper>
 	);
 };

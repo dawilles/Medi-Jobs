@@ -23,3 +23,11 @@ export type Salary = {
     isActive: boolean;
     expiryDate: string;
   };
+
+ export type QueryParams = {
+    keyword?: string;
+    location?: string;
+    contractType?: string;
+    salaryFrom?: number;
+    salaryTo?: number;
+  };

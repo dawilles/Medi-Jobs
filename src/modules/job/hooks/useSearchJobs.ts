@@ -1,36 +1,27 @@
-import { useEffect, useState } from "react";
-import { JobAd } from "../../../types";
-
-type QueryParams = {
-	keyword?: string;
-	location?: string;
-	salaryFrom?: number;
-	salaryTo?: number;
-};
+import { JobAd, QueryParams } from "@/types";
 
 export const useSearchJobs = (
 	jobAds: JobAd[],
 	query: QueryParams = {},
 ): JobAd[] => {
 	const filterJobs = (job: JobAd): boolean => {
-		if (query.keyword && !job.title.includes(query.keyword)) return false;
-		if (query.location && job.location !== query.location) return false;
-		if (
-			query.salaryFrom &&
-			(job.salary.from < query.salaryFrom || job.salary.to < query.salaryFrom)
-		)
-			return false;
-		if (
-			query.salaryTo &&
-			(job.salary.from > query.salaryTo || job.salary.to > query.salaryTo)
-		)
-			return false;
-		return true;
+		return [
+			() =>
+				!query.keyword ||
+				job.title.toLowerCase().includes(query.keyword.toLowerCase()),
+			() =>
+				!query.location ||
+				job.location.toLowerCase() === query.location.toLowerCase(),
+			() => !query.contractType || job.contractType === query.contractType,
+			() =>
+				!query.salaryFrom ||
+				(job.salary.from >= query.salaryFrom &&
+					job.salary.to >= query.salaryFrom),
+			() =>
+				!query.salaryTo ||
+				(job.salary.from <= query.salaryTo && job.salary.to <= query.salaryTo),
+		].every((test) => test());
 	};
 
-	const fetchSearchResults = (): JobAd[] => {
-		return [...jobAds].filter(filterJobs);
-	};
-
-	return fetchSearchResults();
+	return jobAds.filter(filterJobs);
 };

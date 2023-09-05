@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
 import {
 	Box,
 	TextField,
@@ -8,77 +9,85 @@ import {
 	Select,
 	MenuItem,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 type AdvancedSearchProps = {
 	onSearch: (params: any) => void;
 };
 
-export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({ onSearch }) => {
-	const [keyword, setKeyword] = useState<string>("");
-	const [location, setLocation] = useState<string>("");
-	const [contractType, setContractType] = useState<string>("");
-	const [salaryFrom, setSalaryFrom] = useState<number | null>(null);
-	const [salaryTo, setSalaryTo] = useState<number | null>(null);
-
-	const handleSearch = () => {
-		const params = {
-			keyword,
-			location,
-			contractType,
-			salaryFrom,
-			salaryTo,
-		};
-		onSearch(params);
-	};
+export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
+	onSearch,
+}) => {
+	const theme = useTheme();
+	const formik = useFormik({
+		initialValues: {
+			keyword: "",
+			location: "",
+			contractType: "",
+			salaryFrom: "",
+			salaryTo: "",
+		},
+		onSubmit: (values) => {
+			onSearch(values);
+		},
+	});
 
 	return (
-		<Box sx={{ padding: "1rem" }}>
-			<TextField
-				label='Keyword'
-				variant='outlined'
-				fullWidth
-				value={keyword}
-				onChange={(e) => setKeyword(e.target.value)}
-			/>
-			<TextField
-				label='Location'
-				variant='outlined'
-				fullWidth
-				value={location}
-				onChange={(e) => setLocation(e.target.value)}
-			/>
-			<FormControl variant='outlined' fullWidth>
-				<InputLabel>Type of Contract</InputLabel>
-				<Select
-					label='Type of Contract'
-					value={contractType}
-					onChange={(e) => setContractType(e.target.value as string)}>
-					<MenuItem value='Full-time'>Full-time</MenuItem>
-					<MenuItem value='Part-time'>Part-time</MenuItem>
-					<MenuItem value='Contract'>Contract</MenuItem>
-				</Select>
-			</FormControl>
-			<TextField
-				label='Salary From'
-				variant='outlined'
-				fullWidth
-				type='number'
-				value={salaryFrom || ""}
-				onChange={(e) => setSalaryFrom(Number(e.target.value))}
-			/>
-			<TextField
-				label='Salary To'
-				variant='outlined'
-				fullWidth
-				type='number'
-				value={salaryTo || ""}
-				onChange={(e) => setSalaryTo(Number(e.target.value))}
-			/>
-			<Button variant='contained' color='primary' onClick={handleSearch}>
-				Search
-			</Button>
+		<Box
+			sx={{ padding: "1rem", backgroundColor: theme.palette.background.paper }}>
+			<form onSubmit={formik.handleSubmit}>
+				<Box mb={2}>
+					<TextField
+						label='Nazwa'
+						variant='outlined'
+						fullWidth
+						{...formik.getFieldProps("keyword")}
+					/>
+				</Box>
+				<Box mb={2}>
+					<TextField
+						label='Lokalizacja'
+						variant='outlined'
+						fullWidth
+						{...formik.getFieldProps("location")}
+					/>
+				</Box>
+				<Box mb={2}>
+					<FormControl variant='outlined' fullWidth>
+						<InputLabel>Type of Contract</InputLabel>
+						<Select
+							label='Type of Contract'
+							{...formik.getFieldProps("contractType")}>
+							<MenuItem value='Pełny etat'>Pełny etat</MenuItem>
+							<MenuItem value='Pół etatu'>Pół etatu</MenuItem>
+							<MenuItem value='Kontrakt'>Kontrakt</MenuItem>
+						</Select>
+					</FormControl>
+				</Box>
+				<Box mb={2}>
+					<TextField
+						label='Wynagrodzenie od'
+						variant='outlined'
+						fullWidth
+						type='number'
+						{...formik.getFieldProps("salaryFrom")}
+					/>
+				</Box>
+				<Box mb={2}>
+					<TextField
+						label='Wynagrodzenie do'
+						variant='outlined'
+						fullWidth
+						type='number'
+						{...formik.getFieldProps("salaryTo")}
+					/>
+				</Box>
+				<Box mt={2}>
+					<Button variant='contained' color='primary' type='submit'>
+						Search
+					</Button>
+				</Box>
+			</form>
 		</Box>
 	);
 };
-
-

@@ -30,16 +30,14 @@ export const SpecializationsSidebar: React.FC = () => {
 	return (
 		<Box
 			sx={{
-				height: "100vh",
-				position: "fixed",
+				display: "flex",
 				flexDirection: "column",
-				justifyContent: "center",
 			}}>
 			<List>
 				{Object.entries(categories).map(([category, Icon], index) => (
 					<ListItem key={index} button>
 						<ListItemIcon>
-							<Icon color="secondary" />
+							<Icon color='secondary' />
 						</ListItemIcon>
 						<ListItemText primary={category} />
 					</ListItem>

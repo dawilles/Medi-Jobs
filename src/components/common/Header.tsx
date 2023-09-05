@@ -12,8 +12,8 @@ import {
 	// Avatar,
 	// Tooltip,
 } from "@mui/material";
-import MedicalInformationIcon from "@mui/icons-material/MedicalInformation"; // Zaimportuj odpowiednią ikonę
-import DensityMediumIcon from "@mui/icons-material/DensityMedium"; // Zaimportuj odpowiednią ikonę
+import MedicalInformationIcon from "@mui/icons-material/MedicalInformation"; 
+import DensityMediumIcon from "@mui/icons-material/DensityMedium"; 
 
 const navLinks: string[] = [
 	"Strona Główna",

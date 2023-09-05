@@ -153,5 +153,13 @@ export const theme: Theme = createTheme({
 			fontSize: 14,
 			color: colors.grey[100],
 		},
+		subtitle1: {
+			fontSize: 16,
+			color: colors.grey[900],
+		},
+		subtitle2: {
+			fontSize: 14,
+			color: colors.grey[900],
+		},
 	},
 });
