@@ -31,3 +31,12 @@ export type QueryParams = {
   salaryFrom?: number;
   salaryTo?: number;
 };
+
+export type JobsContentProps = {
+  loadableState: {
+    type: 'loading' | 'error' | 'loaded';
+    error?: Error;
+    data?: JobAd[];
+  };
+  filteredJobs: JobAd[];
+};

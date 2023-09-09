@@ -15,12 +15,18 @@ import {
 import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
-const navLinks: string[] = [
-  'Strona Główna',
-  'Oferty pracy',
-  'Wyszukiwanie zaawansowane',
-  'Kontakt',
-];
+// const navLinks: string[] = [
+//   'Strona Główna',
+//   'Oferty pracy',
+//   'Wyszukiwanie zaawansowane',
+//   'Kontakt',
+// ];
+const linkMapping = {
+  'Strona Główna': '/',
+  'Oferty pracy': '/search',
+  // 'Wyszukiwanie zaawansowane': '/advanced-search',
+  // 'Kontakt': '/contact',
+};
 // const userOptions: string[] = ["Profil", "Ustawienia", "Wyloguj"];
 
 export const Header: React.FC = () => {
@@ -61,7 +67,7 @@ export const Header: React.FC = () => {
         </Box>
 
         {/* Navigation for larger screens */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+        {/* <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           {navLinks.map((link) => (
             <Button key={link}>
               <Typography variant="h6" sx={{ paddingRight: '.2rem' }}>
@@ -69,10 +75,19 @@ export const Header: React.FC = () => {
               </Typography>
             </Button>
           ))}
+        </Box> */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {Object.entries(linkMapping).map(([label, path]) => (
+            <Button key={label} href={path}>
+              <Typography variant="h6" sx={{ paddingRight: '.2rem' }}>
+                {label}
+              </Typography>
+            </Button>
+          ))}
         </Box>
 
         {/* Navigation for smaller screens */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+        {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
           <IconButton onClick={handleOpenNavMenu}>
             <DensityMediumIcon fontSize="large" />
           </IconButton>
@@ -84,6 +99,22 @@ export const Header: React.FC = () => {
             {navLinks.map((link) => (
               <MenuItem key={link} onClick={handleCloseNavMenu} divider={true}>
                 {link}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box> */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <IconButton onClick={handleOpenNavMenu}>
+            <DensityMediumIcon fontSize="large" />
+          </IconButton>
+          <Menu
+            anchorEl={anchorElNav}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+          >
+            {Object.entries(linkMapping).map(([label, path]) => (
+              <MenuItem key={label} onClick={handleCloseNavMenu} divider={true}>
+                <Link href={path}>{label}</Link>
               </MenuItem>
             ))}
           </Menu>

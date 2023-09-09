@@ -1,10 +1,10 @@
 import { JobAd, QueryParams } from '@/types';
 
-export const useSearchJobs = (
+export const filterJobs = (
   jobAds: JobAd[],
   query: QueryParams = {},
 ): JobAd[] => {
-  const filterJobs = (job: JobAd): boolean => {
+  const filterJob = (job: JobAd): boolean => {
     return [
       () =>
         !query.keyword ||
@@ -23,5 +23,5 @@ export const useSearchJobs = (
     ].every((test) => test());
   };
 
-  return jobAds.filter(filterJobs);
+  return jobAds.filter(filterJob);
 };

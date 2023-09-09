@@ -46,7 +46,7 @@ export const jobAds = [
   {
     id: 3,
     category: 'Stomatolodzy',
-    dateAdded: '2023-08-10',
+    dateAdded: '2023-09-10',
     title: 'Stomatolog ogólny',
     description:
       'Szukamy doświadczonego stomatologa do praktyki w Gdańsku. Elastyczne godziny pracy.',

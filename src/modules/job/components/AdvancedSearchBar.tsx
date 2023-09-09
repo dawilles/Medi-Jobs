@@ -55,7 +55,7 @@ export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
         </Box>
         <Box mb={2}>
           <FormControl variant="outlined" fullWidth>
-            <InputLabel>Type of Contract</InputLabel>
+            <InputLabel>Typ kontraktu</InputLabel>
             <Select
               label="Type of Contract"
               {...formik.getFieldProps('contractType')}
@@ -86,7 +86,7 @@ export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
         </Box>
         <Box mt={2}>
           <Button variant="contained" color="primary" type="submit">
-            Search
+            Szukaj
           </Button>
         </Box>
       </form>

@@ -3,14 +3,17 @@ import { Header } from '../../components/common/Header';
 import { SpecializationsSidebar } from '@/modules/home/components/SpecializationsSidebar';
 import { SearchBar } from '@/modules/home/components/SearchBar';
 import { JobBanner } from '@/modules/job/components/JobBanner';
-import { useLatestJobs } from '@/modules/home/hooks/useLatestJobs';
 import { jobAds } from '../../dataJobs';
 import { JobAd } from '../../types';
-
 import { Grid, Box } from '@mui/material';
 
 export const Home: React.FC = () => {
-  const latestJobs = useLatestJobs(jobAds, 3);
+  const sortByDateAdded = (a: JobAd, b: JobAd) =>
+    new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
+  const getLatestJobs = (jobAds: JobAd[], limit: number = 5): JobAd[] => {
+    const sortedJobAds = [...jobAds].sort(sortByDateAdded);
+    return sortedJobAds.slice(0, limit);
+  };
   return (
     <>
       <Header />
@@ -36,7 +39,7 @@ export const Home: React.FC = () => {
           >
             <SearchBar />
           </Box>
-          {latestJobs.map((job: JobAd) => (
+          {getLatestJobs(jobAds).map((job: JobAd) => (
             <Box key={job.id} p={3} mr={4} ml={4} sx={{ minWidth: '28rem' }}>
               <JobBanner job={job} />
             </Box>

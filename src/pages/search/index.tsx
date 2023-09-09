@@ -1,4 +1,4 @@
-//Still on progress with the search page, i plan to do some separate logic there
+// //Still on progress with the search page, i plan to do some separate logic there
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Grid } from '@mui/material';
@@ -7,23 +7,40 @@ import { JobBanner } from '@/modules/job/components/JobBanner';
 import { jobAds } from '@/dataJobs';
 import { AdvancedSearchBar } from '@/modules/job/components/AdvancedSearchBar';
 import { useLoadableData } from '@/hooks/useLoadableData';
-import { useSearchJobs } from '@/modules/job/hooks/useSearchJobs';
+import { filterJobs } from '@/utils/filterJobs';
+import { JobAd, JobsContentProps } from '@/types';
 
 const loadJobs = async () => {
   // TODO: Fetch jobs from API
   return jobAds;
 };
 
+
+const JobsContent = ({ loadableState, filteredJobs }: JobsContentProps) => {
+  switch (loadableState.type) {
+    case 'loading':
+      return <div>Loading...</div>;
+    case 'error':
+      return <div>Error: {loadableState.error?.message}</div>;
+    case 'loaded':
+      return filteredJobs.map((job: JobAd) => (
+        <Box key={job.id} p={3}>
+          <JobBanner job={job} />
+        </Box>
+      ));
+    default:
+      return null;
+  }
+};
+
 const Search: React.FC = () => {
   const router = useRouter();
   const initialQuery = { keyword: router.query.query as string };
   const [searchParams, setSearchParams] = useState(initialQuery);
-  console.log(router.query.query);
-  const { state: loadableState, reload } = useLoadableData(loadJobs, {});
+  const { state: loadableState, reload } = useLoadableData(loadJobs, undefined);
   const allJobs = loadableState.type === 'loaded' ? loadableState.data : [];
-  console.log(loadableState);
-  const filteredJobs = useSearchJobs(allJobs, searchParams);
-  console.log(filteredJobs);
+  const filteredJobs = filterJobs(allJobs, searchParams);
+
   useEffect(() => {
     if (router.query.query) {
       setSearchParams({ keyword: router.query.query as string });
@@ -34,23 +51,6 @@ const Search: React.FC = () => {
     setSearchParams(params);
   };
 
-  const renderContent = () => {
-    switch (loadableState.type) {
-      case 'loading':
-        return <div>Loading...</div>;
-      case 'error':
-        return <div>Error: {loadableState.error.message}</div>;
-      case 'loaded':
-        return filteredJobs.map((job) => (
-          <Box key={job.id} p={3}>
-            <JobBanner job={job} />
-          </Box>
-        ));
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       <Header />
@@ -59,7 +59,10 @@ const Search: React.FC = () => {
           <AdvancedSearchBar onSearch={handleAdvancedSearch} />
         </Grid>
         <Grid item xs={12} sm={8} md={9}>
-          {renderContent()}
+          <JobsContent
+            loadableState={loadableState}
+            filteredJobs={filteredJobs}
+          />
         </Grid>
       </Grid>
     </>
