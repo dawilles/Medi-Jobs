@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 
-export const SearchBar: React.FC = () => {
+export const SearchBar= () => {
   const router = useRouter();
 
   const [query, setQuery] = useState('');
@@ -43,3 +43,4 @@ export const SearchBar: React.FC = () => {
     </>
   );
 };
+

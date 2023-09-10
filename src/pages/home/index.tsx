@@ -6,6 +6,7 @@ import { JobBanner } from '@/modules/job/components/JobBanner';
 import { jobAds } from '../../dataJobs';
 import { JobAd } from '../../types';
 import { Grid, Box } from '@mui/material';
+import { categories } from '@/modules/home/data/categories';
 
 export const Home: React.FC = () => {
   const sortByDateAdded = (a: JobAd, b: JobAd) =>
@@ -27,7 +28,7 @@ export const Home: React.FC = () => {
             display: { xs: 'none', sm: 'flex' },
           }}
         >
-          <SpecializationsSidebar />
+          <SpecializationsSidebar categories={categories} />
         </Grid>
         <Grid item xs={12} sm={9} md={10}>
           <Box
