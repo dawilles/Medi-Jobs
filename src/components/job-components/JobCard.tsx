@@ -1,5 +1,5 @@
 import { JobAd } from '@/types';
-import { Box, Paper, Typography, Chip, Grid, IconButton } from '@mui/material';
+import { Box, Paper, Typography, Chip, Grid, Button } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -24,7 +24,11 @@ export const JobCard = ({ job }: { job: JobAd }) => {
               </Typography>
             </Grid>
             <Grid item xs={3} sx={{ textAlign: 'right' }}>
-              <Chip label={job.category} variant="outlined" color="primary" />
+              <Chip
+                label={job.categoryLabel}
+                variant="outlined"
+                color="primary"
+              />
             </Grid>
             <Grid item xs={6}>
               <Typography variant="subtitle1" gutterBottom>
@@ -83,7 +87,7 @@ export const JobCard = ({ job }: { job: JobAd }) => {
                 {job.description}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={9}>
               <Typography variant="subtitle2">
                 <PersonIcon
                   color="secondary"
@@ -102,6 +106,11 @@ export const JobCard = ({ job }: { job: JobAd }) => {
                 />{' '}
                 Email: {job.user.email}
               </Typography>
+            </Grid>
+            <Grid item xs={3} sx={{ textAlign: 'right' }}>
+              <Button variant="contained" color="secondary" type="submit">
+                Aplikuj
+              </Button>
             </Grid>
           </Grid>
         </Paper>

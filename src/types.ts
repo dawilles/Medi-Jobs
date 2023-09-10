@@ -12,7 +12,8 @@ export type User = {
 
 export type JobAd = {
   id: number;
-  category: string;
+  categoryKey: string;
+  categoryLabel: string;
   dateAdded: string;
   title: string;
   description: string;
@@ -28,6 +29,7 @@ export type QueryParams = {
   keyword?: string;
   location?: string;
   contractType?: string;
+  categoryKey?: string;
   salaryFrom?: number;
   salaryTo?: number;
 };

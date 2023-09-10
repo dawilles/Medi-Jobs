@@ -13,6 +13,7 @@ export const filterJobs = (
         !query.location ||
         job.location.toLowerCase() === query.location.toLowerCase(),
       () => !query.contractType || job.contractType === query.contractType,
+      () => !query.categoryKey || job.categoryKey === query.categoryKey,
       () =>
         !query.salaryFrom ||
         (job.salary.from >= query.salaryFrom &&

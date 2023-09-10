@@ -10,10 +10,20 @@ import {
   MenuItem,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { jobAds } from '@/dataJobs';
 
 type AdvancedSearchProps = {
   onSearch: (params: any) => void;
 };
+
+const uniqueCategories = Array.from(
+  new Set(jobAds.map((ad) => ad.categoryKey)),
+).map((key) => {
+  return {
+    key: key,
+    label: jobAds.find((ad) => ad.categoryKey === key)?.categoryLabel,
+  };
+});
 
 export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
   onSearch,
@@ -24,6 +34,7 @@ export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
       keyword: '',
       location: '',
       contractType: '',
+      category: '',
       salaryFrom: '',
       salaryTo: '',
     },
@@ -57,7 +68,7 @@ export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
           <FormControl variant="outlined" fullWidth>
             <InputLabel>Typ kontraktu</InputLabel>
             <Select
-              label="Type of Contract"
+              label="Typ kontraktu"
               {...formik.getFieldProps('contractType')}
             >
               <MenuItem value="Pełny etat">Pełny etat</MenuItem>
@@ -66,6 +77,19 @@ export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
             </Select>
           </FormControl>
         </Box>
+        <Box mb={2}>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel>Kategoria</InputLabel>
+            <Select label="Kategoria" {...formik.getFieldProps('categoryKey')}>
+              {uniqueCategories.map((category) => (
+                <MenuItem key={category.key} value={category.key}>
+                  {category.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
         <Box mb={2}>
           <TextField
             label="Wynagrodzenie od"

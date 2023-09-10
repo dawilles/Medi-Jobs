@@ -1,7 +1,8 @@
 export const jobAds = [
   {
     id: 1,
-    category: 'Lekarze',
+    categoryKey: 'doctors',
+    categoryLabel: 'Lekarz',
     dateAdded: '2023-08-29',
     title: 'Lekarz Specjalista Medycyny Rodzinnej',
     description:
@@ -23,7 +24,8 @@ export const jobAds = [
   },
   {
     id: 2,
-    category: 'Farmaceuci',
+    categoryKey: 'pharmacists',
+    categoryLabel: 'Farmaceuta',
     dateAdded: '2023-08-15',
     title: 'Farmaceuta w aptece miejskiej',
     description:
@@ -45,7 +47,8 @@ export const jobAds = [
   },
   {
     id: 3,
-    category: 'Stomatolodzy',
+    categoryKey: 'dentists',
+    categoryLabel: 'Dentysta',
     dateAdded: '2023-09-10',
     title: 'Stomatolog ogólny',
     description:
@@ -67,7 +70,8 @@ export const jobAds = [
   },
   {
     id: 4,
-    category: 'Fizjoterapeuci',
+    categoryKey: 'physiotherapists',
+    categoryLabel: 'Fizjoterapeuta',
     dateAdded: '2023-08-20',
     title: 'Specjalista Fizjoterapii',
     description:
@@ -89,7 +93,8 @@ export const jobAds = [
   },
   {
     id: 5,
-    category: 'Psychologowie',
+    categoryKey: 'psychologists',
+    categoryLabel: 'Psycholog',
     dateAdded: '2023-08-25',
     title: 'Psycholog Kliniczny',
     description:
@@ -111,7 +116,8 @@ export const jobAds = [
   },
   {
     id: 6,
-    category: 'Pielęgniarki',
+    categoryKey: 'nurses',
+    categoryLabel: 'Pielęgniarka',
     dateAdded: '2023-08-13',
     title: 'Starsza Pielęgniarka',
     description:
@@ -133,7 +139,8 @@ export const jobAds = [
   },
   {
     id: 7,
-    category: 'Położne',
+    categoryKey: 'midwives',
+    categoryLabel: 'Położna',
     dateAdded: '2023-08-05',
     title: 'Położna w szpitalu',
     description:
@@ -155,7 +162,8 @@ export const jobAds = [
   },
   {
     id: 8,
-    category: 'Opiekunowie',
+    categoryKey: 'caretakers',
+    categoryLabel: 'Opiekun',
     dateAdded: '2023-08-07',
     title: 'Opiekun seniora',
     description: 'Dom seniora w Rzeszowie poszukuje opiekuna z doświadczeniem.',
@@ -176,7 +184,8 @@ export const jobAds = [
   },
   {
     id: 9,
-    category: 'Farmaceuci',
+    categoryKey: 'pharmacists',
+    categoryLabel: 'Farmaceuta',
     dateAdded: '2023-08-16',
     title: 'Farmaceuta',
     description: 'Apteka w Wrocławiu poszukuje licencjonowanego farmaceuty.',
@@ -197,7 +206,8 @@ export const jobAds = [
   },
   {
     id: 10,
-    category: 'Fizjoterapeuci',
+    categoryKey: 'physiotherapists',
+    categoryLabel: 'Fizjoterapeuta',
     dateAdded: '2023-08-12',
     title: 'Fizjoterapeuta sportowy',
     description:
@@ -219,7 +229,8 @@ export const jobAds = [
   },
   {
     id: 11,
-    category: 'Dietetycy',
+    categoryKey: 'dieticians',
+    categoryLabel: 'Dietetyk',
     dateAdded: '2023-08-18',
     title: 'Dietetyk sportowy',
     description:
@@ -241,7 +252,8 @@ export const jobAds = [
   },
   {
     id: 12,
-    category: 'Opiekunowie',
+    categoryKey: 'caretakers',
+    categoryLabel: 'Opiekun',
     dateAdded: '2023-08-14',
     title: 'Opiekun osób niepełnosprawnych',
     description:
@@ -263,7 +275,8 @@ export const jobAds = [
   },
   {
     id: 13,
-    category: 'Pielęgniarki',
+    categoryKey: 'nurses',
+    categoryLabel: 'Pielęgniarka',
     dateAdded: '2023-08-19',
     title: 'Pielęgniarka anestezjologiczna',
     description:
@@ -285,7 +298,8 @@ export const jobAds = [
   },
   {
     id: 14,
-    category: 'Stomatolodzy',
+    categoryKey: 'dentists',
+    categoryLabel: 'Dentysta',
     dateAdded: '2023-08-11',
     title: 'Ortodonta',
     description:
@@ -307,7 +321,8 @@ export const jobAds = [
   },
   {
     id: 15,
-    category: 'Dietetycy',
+    categoryKey: 'dieticians',
+    categoryLabel: 'Dietetyk',
     dateAdded: '2023-08-01',
     title: 'Dietetyk kliniczny',
     description:
@@ -329,7 +344,8 @@ export const jobAds = [
   },
   {
     id: 16,
-    category: 'Lekarze',
+    categoryKey: 'doctors',
+    categoryLabel: 'Lekarz',
     dateAdded: '2023-09-02',
     title: 'Lekarz - Część etatu',
     description:
@@ -351,7 +367,8 @@ export const jobAds = [
   },
   {
     id: 17,
-    category: 'Lekarze',
+    categoryKey: 'doctors',
+    categoryLabel: 'Lekarz',
     dateAdded: '2023-08-29',
     title: 'Lekarz Specjalista Medycyny Ratowniczej',
     description:
