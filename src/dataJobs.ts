@@ -3,7 +3,7 @@ export const jobAds = [
     id: 1,
     categoryKey: 'doctors',
     categoryLabel: 'Lekarz',
-    dateAdded: '2023-08-29',
+    dateAdded: '2023-10-29',
     title: 'Lekarz Specjalista Medycyny Rodzinnej',
     description:
       'Szukamy lekarza specjalisty medycyny rodzinnej do naszej przychodni w Warszawie. Oferujemy atrakcyjne warunki zatrudnienia, pełny etat oraz przyjazne środowisko pracy.',
@@ -26,7 +26,7 @@ export const jobAds = [
     id: 2,
     categoryKey: 'pharmacists',
     categoryLabel: 'Farmaceuta',
-    dateAdded: '2023-08-15',
+    dateAdded: '2023-09-15',
     title: 'Farmaceuta w aptece miejskiej',
     description:
       'Dołącz do naszego zespołu w nowoczesnej aptece w Krakowie. Oczekujemy doświadczenia i licencji do wykonywania zawodu.',

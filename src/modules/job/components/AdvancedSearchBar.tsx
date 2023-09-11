@@ -25,9 +25,7 @@ const uniqueCategories = Array.from(
   };
 });
 
-export const AdvancedSearchBar: React.FC<AdvancedSearchProps> = ({
-  onSearch,
-}) => {
+export const AdvancedSearchBar = ({ onSearch }: AdvancedSearchProps) => {
   const theme = useTheme();
   const formik = useFormik({
     initialValues: {

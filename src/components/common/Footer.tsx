@@ -1,11 +1,8 @@
 // still on work
 import React from 'react';
 import { Box, Typography, Container, Grid, Link } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 
 export const Footer = () => {
-  const theme = useTheme();
-
   return (
     <Box
       sx={{

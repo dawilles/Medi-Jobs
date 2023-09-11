@@ -7,14 +7,9 @@ import { jobAds } from '../../dataJobs';
 import { JobAd } from '../../types';
 import { Grid, Box } from '@mui/material';
 import { categories } from '@/modules/home/data/categories';
+import { getLatestJobs } from '@/utils/sortingNevestJobs';
 
-export const Home: React.FC = () => {
-  const sortByDateAdded = (a: JobAd, b: JobAd) =>
-    new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
-  const getLatestJobs = (jobAds: JobAd[], limit: number = 5): JobAd[] => {
-    const sortedJobAds = [...jobAds].sort(sortByDateAdded);
-    return sortedJobAds.slice(0, limit);
-  };
+export const Home = () => {
   return (
     <>
       <Header />

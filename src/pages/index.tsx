@@ -1,7 +1,7 @@
 import React from 'react';
 import { Home } from '@/pages/home';
 
-const IndexPage: React.FC = () => {
+const IndexPage = () => {
   return <Home />;
 };
 

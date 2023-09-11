@@ -29,7 +29,7 @@ const linkMapping = {
 };
 // const userOptions: string[] = ["Profil", "Ustawienia", "Wyloguj"];
 
-export const Header: React.FC = () => {
+export const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   // const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 

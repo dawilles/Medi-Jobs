@@ -6,7 +6,7 @@ import { GetStaticPropsContext } from 'next';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 
-const JobPage: React.FC<{ job: JobAd }> = ({ job }) => {
+const JobPage = ({ job }: { job: JobAd }) => {
   return (
     <>
       <Header />

@@ -10,7 +10,7 @@ type JobBannerProps = {
   job: JobAd;
 };
 
-export const JobBanner: React.FC<JobBannerProps> = ({ job }) => {
+export const JobBanner = ({ job }: JobBannerProps) => {
   return (
     <Paper elevation={5}>
       <Box

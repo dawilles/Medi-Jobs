@@ -1,20 +1,19 @@
-// //Still on progress with the search page, i plan to do some separate logic there
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Grid } from '@mui/material';
+
 import { Header } from '@/components/common/Header';
 import { JobBanner } from '@/modules/job/components/JobBanner';
-import { jobAds } from '@/dataJobs';
 import { AdvancedSearchBar } from '@/modules/job/components/AdvancedSearchBar';
 import { useLoadableData } from '@/hooks/useLoadableData';
 import { filterJobs } from '@/utils/filterJobs';
+import { jobAds } from '@/dataJobs';
 import { JobAd, JobsContentProps } from '@/types';
 
-const loadJobs = async () => {
+const loadJobs = async (): Promise<JobAd[]> => {
   // TODO: Fetch jobs from API
   return jobAds;
 };
-
 
 const JobsContent = ({ loadableState, filteredJobs }: JobsContentProps) => {
   switch (loadableState.type) {
@@ -23,7 +22,7 @@ const JobsContent = ({ loadableState, filteredJobs }: JobsContentProps) => {
     case 'error':
       return <div>Error: {loadableState.error?.message}</div>;
     case 'loaded':
-      return filteredJobs.map((job: JobAd) => (
+      return filteredJobs.map((job) => (
         <Box key={job.id} p={3}>
           <JobBanner job={job} />
         </Box>
@@ -33,23 +32,33 @@ const JobsContent = ({ loadableState, filteredJobs }: JobsContentProps) => {
   }
 };
 
-const Search: React.FC = () => {
-  const router = useRouter();
-  const initialQuery = { keyword: router.query.query as string };
+const Search = () => {
+  const { query } = useRouter();
+  const initialQuery = {
+    keyword: query.query as string,
+    categoryKey: query.category as string,
+  };
+
   const [searchParams, setSearchParams] = useState(initialQuery);
-  const { state: loadableState, reload } = useLoadableData(loadJobs, undefined);
-  const allJobs = loadableState.type === 'loaded' ? loadableState.data : [];
-  const filteredJobs = filterJobs(allJobs, searchParams);
+  const { state: loadableState } = useLoadableData(loadJobs, undefined);
 
   useEffect(() => {
-    if (router.query.query) {
-      setSearchParams({ keyword: router.query.query as string });
-    }
-  }, [router.query.query]);
+    setSearchParams({
+      ...searchParams,
+      ...(query.query && { keyword: query.query as string }),
+      ...(query.category && { categoryKey: query.category as string }),
+    });
+  }, [query]);
 
-  const handleAdvancedSearch = (params: any) => {
+  const handleAdvancedSearch = (params: {
+    keyword: string;
+    categoryKey: string;
+  }) => {
     setSearchParams(params);
   };
+
+  const allJobs = loadableState.type === 'loaded' ? loadableState.data : [];
+  const filteredJobs = filterJobs(allJobs, searchParams);
 
   return (
     <>
