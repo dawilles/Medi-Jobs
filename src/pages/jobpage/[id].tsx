@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { jobAds } from '@/dataJobs';
 import type { JobAd } from '@/types';
 import { JobCard } from '@/components/job-components/JobCard';

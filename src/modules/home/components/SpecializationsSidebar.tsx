@@ -12,7 +12,7 @@ export const SpecializationsSidebar = ({
   categories: Categories;
 }) => {
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} pt={10}>
       <List>
         {Object.entries(categories).map(
           ([categoryKey, categoryData], index) => (
@@ -33,4 +33,3 @@ export const SpecializationsSidebar = ({
     </Stack>
   );
 };
-

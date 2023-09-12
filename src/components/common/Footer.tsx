@@ -1,10 +1,10 @@
 // still on work
 import React from 'react';
-import { Box, Typography, Container, Grid, Link } from '@mui/material';
+import { Typography, Container, Grid, Link, Stack } from '@mui/material';
 
 export const Footer = () => {
   return (
-    <Box
+    <Stack
       sx={{
         backgroundColor: 'primary.main',
         color: '#fff',
@@ -30,7 +30,7 @@ export const Footer = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="h6">Przydatne linki</Typography>
-            <Box
+            <Stack
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -57,10 +57,10 @@ export const Footer = () => {
               >
                 Warunki korzystania
               </Link>
-            </Box>
+            </Stack>
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </Stack>
   );
 };

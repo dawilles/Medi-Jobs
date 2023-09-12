@@ -1,13 +1,13 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import {
-  Box,
   TextField,
   Button,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
+  Stack,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { jobAds } from '@/dataJobs';
@@ -42,76 +42,79 @@ export const AdvancedSearchBar = ({ onSearch }: AdvancedSearchProps) => {
   });
 
   return (
-    <Box
-      sx={{ padding: '1rem', backgroundColor: theme.palette.background.paper }}
-    >
-      <form onSubmit={formik.handleSubmit}>
-        <Box mb={2}>
-          <TextField
-            label="Nazwa"
-            variant="outlined"
-            fullWidth
-            {...formik.getFieldProps('keyword')}
-          />
-        </Box>
-        <Box mb={2}>
-          <TextField
-            label="Lokalizacja"
-            variant="outlined"
-            fullWidth
-            {...formik.getFieldProps('location')}
-          />
-        </Box>
-        <Box mb={2}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel>Typ kontraktu</InputLabel>
-            <Select
-              label="Typ kontraktu"
-              {...formik.getFieldProps('contractType')}
-            >
-              <MenuItem value="Pełny etat">Pełny etat</MenuItem>
-              <MenuItem value="Pół etatu">Pół etatu</MenuItem>
-              <MenuItem value="Kontrakt">Kontrakt</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <Box mb={2}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel>Kategoria</InputLabel>
-            <Select label="Kategoria" {...formik.getFieldProps('categoryKey')}>
-              {uniqueCategories.map((category) => (
-                <MenuItem key={category.key} value={category.key}>
-                  {category.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
+    <>
+      <Stack mt={9} sx={{ padding: '1rem' }}>
+        <form onSubmit={formik.handleSubmit}>
+          <Stack mb={2}>
+            <TextField
+              label="Nazwa"
+              variant="outlined"
+              fullWidth
+              {...formik.getFieldProps('keyword')}
+            />
+          </Stack>
+          <Stack mb={2}>
+            <TextField
+              label="Lokalizacja"
+              variant="outlined"
+              fullWidth
+              {...formik.getFieldProps('location')}
+            />
+          </Stack>
+          <Stack mb={2}>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel>Typ kontraktu</InputLabel>
+              <Select
+                label="Typ kontraktu"
+                {...formik.getFieldProps('contractType')}
+              >
+                <MenuItem value="Pełny etat">Pełny etat</MenuItem>
+                <MenuItem value="Pół etatu">Pół etatu</MenuItem>
+                <MenuItem value="Kontrakt">Kontrakt</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
+          <Stack mb={2}>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel>Kategoria</InputLabel>
+              <Select
+                label="Kategoria"
+                {...formik.getFieldProps('categoryKey')}
+              >
+                {uniqueCategories.map((category) => (
+                  <MenuItem key={category.key} value={category.key}>
+                    {category.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Stack>
 
-        <Box mb={2}>
-          <TextField
-            label="Wynagrodzenie od"
-            variant="outlined"
-            fullWidth
-            type="number"
-            {...formik.getFieldProps('salaryFrom')}
-          />
-        </Box>
-        <Box mb={2}>
-          <TextField
-            label="Wynagrodzenie do"
-            variant="outlined"
-            fullWidth
-            type="number"
-            {...formik.getFieldProps('salaryTo')}
-          />
-        </Box>
-        <Box mt={2}>
-          <Button variant="contained" color="primary" type="submit">
-            Szukaj
-          </Button>
-        </Box>
-      </form>
-    </Box>
+          <Stack mb={2}>
+            <TextField
+              label="Wynagrodzenie od"
+              variant="outlined"
+              fullWidth
+              type="number"
+              {...formik.getFieldProps('salaryFrom')}
+            />
+          </Stack>
+          <Stack mb={2}>
+            <TextField
+              label="Wynagrodzenie do"
+              variant="outlined"
+              fullWidth
+              type="number"
+              {...formik.getFieldProps('salaryTo')}
+            />
+          </Stack>
+          <Stack mt={2}>
+            <Button variant="contained" color="primary" type="submit">
+              Szukaj
+            </Button>
+          </Stack>
+        </form>
+      </Stack>
+    </>
   );
 };

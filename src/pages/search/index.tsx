@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 
 import { Header } from '@/components/common/Header';
 import { JobBanner } from '@/modules/job/components/JobBanner';
@@ -23,9 +23,9 @@ const JobsContent = ({ loadableState, filteredJobs }: JobsContentProps) => {
       return <div>Error: {loadableState.error?.message}</div>;
     case 'loaded':
       return filteredJobs.map((job) => (
-        <Box key={job.id} p={3}>
+        <Stack key={job.id} p={3}>
           <JobBanner job={job} />
-        </Box>
+        </Stack>
       ));
     default:
       return null;
@@ -64,10 +64,10 @@ const Search = () => {
     <>
       <Header />
       <Grid container spacing={2}>
-        <Grid item xs={false} sm={4} md={3}>
+        <Grid item xs={12} sm={4} md={3}>
           <AdvancedSearchBar onSearch={handleAdvancedSearch} />
         </Grid>
-        <Grid item xs={12} sm={8} md={9}>
+        <Grid item xs={12} sm={8} md={9} mt={8}>
           <JobsContent
             loadableState={loadableState}
             filteredJobs={filteredJobs}

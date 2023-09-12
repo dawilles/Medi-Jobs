@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Paper, CardContent, Typography, IconButton } from '@mui/material';
+import {
+  Paper,
+  CardContent,
+  Typography,
+  IconButton,
+  Stack,
+  Grid,
+  ListItemIcon,
+} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -12,65 +20,87 @@ type JobBannerProps = {
 
 export const JobBanner = ({ job }: JobBannerProps) => {
   return (
+    // <Paper elevation={5}>
+    //   <Stack direction="row" >
+    //     <CardContent
+    //       sx={{
+    //         flex: 2,
+    //       }}
+    //     >
+    //       <Link
+    //         href={`/jobpage/${job.id}`}
+    //         passHref
+    //         style={{ textDecoration: 'none' }}
+    //       >
+    //         <Typography variant="h3">{job.title}</Typography>
+    //       </Link>
+    //       <Typography variant="h4" color="text.secondary">
+    //         {job.user.username}
+    //       </Typography>
+    //       <Typography variant="body2" color="text.secondary" mt={1}>
+    //         {`Data dodania: ${job.dateAdded}`}
+    //       </Typography>
+    //     </CardContent>
+    //     <CardContent
+    //       sx={{
+    //         flex: 1,
+    //       }}
+    //     >
+    //       <Stack
+    //         direction={{ xs: 'column', sm: 'row' }}
+    //         justifyContent="flex-start"
+    //         p={1}
+    //       >
+    //         <LocationOnIcon />
+    //         <Typography variant="h5">{job.location}</Typography>
+    //       </Stack>
+    //       <Stack
+    //         direction={{ xs: 'column', sm: 'row' }}
+    //         justifyContent="flex-start"
+    //         alignItems="center"
+    //       >
+    //         <AttachMoneyIcon color="success" fontSize="large" />
+    //         <Typography variant="h3">{`${job.salary.from} - ${job.salary.to} ${job.salary.currency}`}</Typography>
+    //       </Stack>
+    //     </CardContent>
+    //     <Stack>
+    //       <IconButton aria-label="save job">
+    //         <StarBorderIcon color="secondary" />
+    //       </IconButton>
+    //     </Stack>
+    //   </Stack>
+    // </Paper>
     <Paper elevation={5}>
-      <Box
-        sx={{
-          display: 'flex',
-          p: 2,
-        }}
-      >
-        <CardContent
-          sx={{
-            flex: 1,
-          }}
-        >
-          <Link
-            href={`/jobpage/${job.id}`}
-            passHref
-            style={{ textDecoration: 'none' }}
-          >
-            <Typography variant="h3">{job.title}</Typography>
+      <Stack direction="row" spacing={2} alignItems="center" p={2}>
+        <Stack sx={{ flex: 2 }} spacing={1}>
+          <Link href={`/jobpage/${job.id}`}  style={{ textDecoration: 'none' }}>
+            <Typography variant="h3" color="primary">
+              {job.title}
+            </Typography>
           </Link>
-          <Typography variant="h4" color="text.secondary">
+          <Typography variant="h5" color="text.secondary">
             {job.user.username}
           </Typography>
-          <Typography variant="body2" color="text.secondary" mt={1}>
+          <Typography variant="body2" color="text.secondary">
             {`Data dodania: ${job.dateAdded}`}
           </Typography>
-        </CardContent>
-        <CardContent
-          sx={{
-            flex: 1,
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              mt: 1,
-            }}
-          >
-            <LocationOnIcon />
+        </Stack>
+        <Stack sx={{ flex: 1 }} spacing={2}>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <LocationOnIcon color="info" />
             <Typography variant="h5">{job.location}</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', pt: 1 }}>
-            <AttachMoneyIcon />
-            <Typography variant="h5">{`${job.salary.from} - ${job.salary.to} ${job.salary.currency}`}</Typography>
-          </Box>
-        </CardContent>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'flex-start',
-            flexShrink: 0,
-          }}
-        >
-          <IconButton aria-label="save job">
-            <StarBorderIcon color="secondary" />
-          </IconButton>
-        </Box>
-      </Box>
+          </Stack>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <AttachMoneyIcon color="success" fontSize="large" />
+            <Typography variant="h4" color="text.primary">
+              {`${job.salary.from} - ${job.salary.to} ${job.salary.currency}`}
+            </Typography>
+          </Stack>
+        </Stack>
+        <IconButton aria-label="save job">
+          <StarBorderIcon color="secondary" fontSize="large" />
+        </IconButton>
+      </Stack>
     </Paper>
   );
 };

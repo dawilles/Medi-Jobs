@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
-  Box,
   IconButton,
   Typography,
   Button,
   Menu,
   MenuItem,
   Link,
+  Stack,
   // Avatar,
   // Tooltip,
 } from '@mui/material';
@@ -22,10 +22,14 @@ import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 //   'Kontakt',
 // ];
 const linkMapping = {
-  'Strona Główna': '/',
-  'Oferty pracy': '/search',
-  // 'Wyszukiwanie zaawansowane': '/advanced-search',
-  // 'Kontakt': '/contact',
+  homePage: {
+    path: '/',
+    label: 'Strona główna',
+  },
+  searchPage: {
+    path: '/search',
+    label: 'Wyszukaj oferty',
+  },
 };
 // const userOptions: string[] = ["Profil", "Ustawienia", "Wyloguj"];
 
@@ -50,12 +54,9 @@ export const Header = () => {
   // };
 
   return (
-    <AppBar position="sticky">
-      <Toolbar
-        disableGutters
-        sx={{ display: 'flex', justifyContent: 'space-between' }}
-      >
-        <Box sx={{ display: 'flex' }}>
+    <AppBar>
+      <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+        <Stack direction="row">
           <IconButton href="/">
             <MedicalInformationIcon fontSize="large" />
           </IconButton>
@@ -64,7 +65,7 @@ export const Header = () => {
               Medi-Jobs
             </Typography>
           </Link>
-        </Box>
+        </Stack>
 
         {/* Navigation for larger screens */}
         {/* <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -76,15 +77,15 @@ export const Header = () => {
             </Button>
           ))}
         </Box> */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          {Object.entries(linkMapping).map(([label, path]) => (
+        <Stack direction="row" sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {Object.values(linkMapping).map(({ label, path }) => (
             <Button key={label} href={path}>
               <Typography variant="h6" sx={{ paddingRight: '.2rem' }}>
                 {label}
               </Typography>
             </Button>
           ))}
-        </Box>
+        </Stack>
 
         {/* Navigation for smaller screens */}
         {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -103,7 +104,7 @@ export const Header = () => {
             ))}
           </Menu>
         </Box> */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+        <Stack direction="row" sx={{ display: { xs: 'flex', md: 'none' } }}>
           <IconButton onClick={handleOpenNavMenu}>
             <DensityMediumIcon fontSize="large" />
           </IconButton>
@@ -112,13 +113,13 @@ export const Header = () => {
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
           >
-            {Object.entries(linkMapping).map(([label, path]) => (
+            {Object.values(linkMapping).map(({ label, path }) => (
               <MenuItem key={label} onClick={handleCloseNavMenu} divider={true}>
                 <Link href={path}>{label}</Link>
               </MenuItem>
             ))}
           </Menu>
-        </Box>
+        </Stack>
 
         {/* User options */}
         {/* <Tooltip title='User Options'>

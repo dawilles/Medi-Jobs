@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { TextField, Button, Typography, Box } from '@mui/material';
+import { TextField, Button, Typography, Stack } from '@mui/material';
 
-export const SearchBar= () => {
+export const SearchBar = () => {
   const router = useRouter();
 
   const [query, setQuery] = useState('');
@@ -14,16 +14,18 @@ export const SearchBar= () => {
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-          padding: '1rem',
-        }}
+      <Stack
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
       >
-        <Typography variant="h2" component="h3" sx={{ padding: '1rem' }}>
+        <Typography
+          variant="h2"
+          component="h3"
+          textAlign="center"
+          sx={{ padding: '2rem' }}
+        >
           Znajdź swoją wymarzoną pracę właśnie dziś!
         </Typography>
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px' }}>
@@ -39,8 +41,7 @@ export const SearchBar= () => {
             Szukaj
           </Button>
         </form>
-      </Box>
+      </Stack>
     </>
   );
 };
-

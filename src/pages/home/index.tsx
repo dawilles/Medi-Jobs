@@ -5,7 +5,7 @@ import { SearchBar } from '@/modules/home/components/SearchBar';
 import { JobBanner } from '@/modules/job/components/JobBanner';
 import { jobAds } from '../../dataJobs';
 import { JobAd } from '../../types';
-import { Grid, Box } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 import { categories } from '@/modules/home/data/categories';
 import { getLatestJobs } from '@/utils/sortingNevestJobs';
 
@@ -16,7 +16,7 @@ export const Home = () => {
       <Grid container spacing={2}>
         <Grid
           item
-          xs={false}
+          xs={12}
           sm={3}
           md={2}
           sx={{
@@ -26,7 +26,7 @@ export const Home = () => {
           <SpecializationsSidebar categories={categories} />
         </Grid>
         <Grid item xs={12} sm={9} md={10}>
-          <Box
+          <Stack
             mt={6}
             sx={{
               display: 'flex',
@@ -34,11 +34,11 @@ export const Home = () => {
             }}
           >
             <SearchBar />
-          </Box>
+          </Stack>
           {getLatestJobs(jobAds).map((job: JobAd) => (
-            <Box key={job.id} p={3} mr={4} ml={4} sx={{ minWidth: '28rem' }}>
+            <Stack key={job.id} p={3} mr={4} ml={4} sx={{ minWidth: '24rem' }}>
               <JobBanner job={job} />
-            </Box>
+            </Stack>
           ))}
         </Grid>
       </Grid>

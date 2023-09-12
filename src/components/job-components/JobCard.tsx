@@ -1,5 +1,12 @@
 import { JobAd } from '@/types';
-import { Box, Paper, Typography, Chip, Grid, Button } from '@mui/material';
+import {
+  Paper,
+  Typography,
+  Chip,
+  Grid,
+  Button,
+  Stack,
+} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -10,7 +17,7 @@ import PersonIcon from '@mui/icons-material/Person';
 export const JobCard = ({ job }: { job: JobAd }) => {
   return (
     <>
-      <Box p={3}>
+      <Stack p={9}>
         <Paper
           elevation={7}
           sx={{
@@ -114,7 +121,7 @@ export const JobCard = ({ job }: { job: JobAd }) => {
             </Grid>
           </Grid>
         </Paper>
-      </Box>
+      </Stack>
     </>
   );
 };
