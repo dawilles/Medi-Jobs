@@ -1,12 +1,5 @@
 import { JobAd } from '@/types';
-import {
-  Paper,
-  Typography,
-  Chip,
-  Grid,
-  Button,
-  Stack,
-} from '@mui/material';
+import { Paper, Typography, Chip, Grid, Button, Stack } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -14,7 +7,12 @@ import WorkIcon from '@mui/icons-material/Work';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PersonIcon from '@mui/icons-material/Person';
 
-export const JobCard = ({ job }: { job: JobAd }) => {
+type JobCardProps = {
+  job: JobAd;
+  onApplyClick?: () => void;
+};
+
+export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
   return (
     <>
       <Stack p={9}>
@@ -115,7 +113,12 @@ export const JobCard = ({ job }: { job: JobAd }) => {
               </Typography>
             </Grid>
             <Grid item xs={3} sx={{ textAlign: 'right' }}>
-              <Button variant="contained" color="secondary" type="submit">
+              <Button
+                variant="contained"
+                color="secondary"
+                type="submit"
+                onClick={onApplyClick}
+              >
                 Aplikuj
               </Button>
             </Grid>
