@@ -35,7 +35,7 @@ export const Home = () => {
           >
             <SearchBar />
           </Stack>
-          {getLatestJobs(jobAds).map((job: JobAd) => (
+          {getLatestJobs(jobAds, 4).map((job: JobAd) => (
             <Stack key={job.id} p={3} mr={4} ml={4} sx={{ minWidth: '24rem' }}>
               <JobBanner job={job} />
             </Stack>
