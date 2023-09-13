@@ -10,31 +10,31 @@ import {
   Stack,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { jobAds } from '@/dataJobs';
+import { uniqueCategories } from '@/utils/uniqueCategories';
 
-type AdvancedSearchProps = {
-  onSearch: (params: any) => void;
+type SearchParams = {
+  keyword: string;
+  location: string;
+  contractType: string;
+  categoryKey: string;
+  salaryFrom: number;
+  salaryTo: number;
 };
 
-const uniqueCategories = Array.from(
-  new Set(jobAds.map((ad) => ad.categoryKey)),
-).map((key) => {
-  return {
-    key: key,
-    label: jobAds.find((ad) => ad.categoryKey === key)?.categoryLabel,
-  };
-});
+type AdvancedSearchProps = {
+  onSearch: (params: SearchParams) => void;
+};
 
 export const AdvancedSearchBar = ({ onSearch }: AdvancedSearchProps) => {
   const theme = useTheme();
-  const formik = useFormik({
+  const formik = useFormik<SearchParams>({
     initialValues: {
       keyword: '',
       location: '',
       contractType: '',
-      category: '',
-      salaryFrom: '',
-      salaryTo: '',
+      categoryKey: '',
+      salaryFrom: 0,
+      salaryTo: 0,
     },
     onSubmit: (values) => {
       onSearch(values);
