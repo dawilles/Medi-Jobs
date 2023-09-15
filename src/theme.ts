@@ -63,66 +63,68 @@ const colors = {
 
 const mode: 'light' | 'dark' = 'light';
 
+const lightModeColors = {
+  primary: {
+    main: colors.primary[800],
+  },
+  secondary: {
+    main: colors.secondary[400],
+  },
+  neutral: {
+    dark: colors.grey[700],
+    main: colors.grey[900],
+    light: colors.grey[100],
+  },
+  success: {
+    main: colors.success[500],
+  },
+  warning: {
+    main: colors.warning[500],
+  },
+  info: {
+    main: colors.info[500],
+  },
+  error: {
+    main: colors.error[500],
+  },
+  background: {
+    default: '#ffffff',
+  },
+};
+
+const darkModeColors = {
+  primary: {
+    main: colors.primary[700],
+  },
+  secondary: {
+    main: colors.secondary[800],
+  },
+  neutral: {
+    dark: colors.grey[700],
+    main: colors.grey[500],
+    light: colors.grey[100],
+  },
+  success: {
+    main: colors.success[500],
+  },
+  warning: {
+    main: colors.warning[500],
+  },
+  info: {
+    main: colors.info[500],
+  },
+  error: {
+    main: colors.error[500],
+  },
+  background: {
+    default: colors.grey[900],
+  },
+};
+
 export const theme: Theme = createTheme({
   palette: {
     mode: mode,
-    ...(mode === 'light'
-      ? {
-          primary: {
-            main: colors.primary[800],
-          },
-          secondary: {
-            main: colors.secondary[400],
-          },
-          neutral: {
-            dark: colors.grey[700],
-            main: colors.grey[900],
-            light: colors.grey[100],
-          },
-          success: {
-            main: colors.success[500],
-          },
-          warning: {
-            main: colors.warning[500],
-          },
-          info: {
-            main: colors.info[500],
-          },
-          error: {
-            main: colors.error[500],
-          },
-          background: {
-            default: '#ffffff',
-          },
-        }
-      : {
-          primary: {
-            main: colors.primary[700],
-          },
-          secondary: {
-            main: colors.secondary[800],
-          },
-          neutral: {
-            dark: colors.grey[700],
-            main: colors.grey[500],
-            light: colors.grey[100],
-          },
-          success: {
-            main: colors.success[500],
-          },
-          warning: {
-            main: colors.warning[500],
-          },
-          info: {
-            main: colors.info[500],
-          },
-          error: {
-            main: colors.error[500],
-          },
-          background: {
-            default: colors.grey[900],
-          },
-        }),
+    ...(mode === 'light' ? lightModeColors : darkModeColors),
   },
   typography: {
     fontFamily: ['"Segoe UI"'].join(','),

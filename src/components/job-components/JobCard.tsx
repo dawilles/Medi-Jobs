@@ -1,3 +1,4 @@
+// still working on mobile 
 import { JobAd } from '@/types';
 import { Paper, Typography, Chip, Grid, Button, Stack } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';

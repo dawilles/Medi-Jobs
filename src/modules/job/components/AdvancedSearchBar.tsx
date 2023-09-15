@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
 import {
   TextField,
   Button,
@@ -9,7 +10,6 @@ import {
   MenuItem,
   Stack,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { uniqueCategories } from '@/utils/uniqueCategories';
 
 type SearchParams = {
@@ -26,7 +26,6 @@ type AdvancedSearchProps = {
 };
 
 export const AdvancedSearchBar = ({ onSearch }: AdvancedSearchProps) => {
-  const theme = useTheme();
   const formik = useFormik<SearchParams>({
     initialValues: {
       keyword: '',
@@ -40,6 +39,12 @@ export const AdvancedSearchBar = ({ onSearch }: AdvancedSearchProps) => {
       onSearch(values);
     },
   });
+
+  const router = useRouter();
+  const handleReset = () => {
+    router.push('/search');
+    formik.resetForm();
+  };
 
   return (
     <>
@@ -108,9 +113,12 @@ export const AdvancedSearchBar = ({ onSearch }: AdvancedSearchProps) => {
               {...formik.getFieldProps('salaryTo')}
             />
           </Stack>
-          <Stack mt={2}>
-            <Button variant="contained" color="primary" type="submit">
+          <Stack mt={2} spacing={2}>
+            <Button variant="contained" type="submit">
               Szukaj
+            </Button>
+            <Button variant="contained" onClick={handleReset}>
+              Resetuj
             </Button>
           </Stack>
         </form>

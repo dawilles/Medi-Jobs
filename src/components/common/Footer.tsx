@@ -1,6 +1,5 @@
-// still on work
-import React from 'react';
-import { Typography, Container, Grid, Link, Stack } from '@mui/material';
+// still working on mobile 
+import { Container, Stack, Typography, Link } from '@mui/material';
 
 export const Footer = () => {
   return (
@@ -13,30 +12,31 @@ export const Footer = () => {
         bottom: 0,
         width: '100%',
       }}
+      direction="row"
+      spacing={5}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={{ xs: 1, md: 2 }}
+        >
+          <Stack spacing={2} maxWidth={{ xs: '50%', md: '33.33%' }}>
             <Typography variant="h6">O nas</Typography>
             <Typography>
               Jesteśmy platformą do wyszukiwania pracy, która pomaga znaleźć
               wymarzoną pracę.
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
+          </Stack>
+          <Stack spacing={2} maxWidth={{ xs: '100%', md: '33.33%' }}>
             <Typography variant="h6">Kontakt</Typography>
             <Typography>Email: info@jobsearch.com</Typography>
             <Typography>Telefon: +48 123 456 789</Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
+          </Stack>
+          <Stack spacing={2} maxWidth={{ xs: '100%', md: '33.33%' }}>
             <Typography variant="h6">Przydatne linki</Typography>
-            <Stack
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-              }}
-            >
+            <Stack direction="column" spacing={1}>
               <Link
                 href="#"
                 sx={{
@@ -58,8 +58,8 @@ export const Footer = () => {
                 Warunki korzystania
               </Link>
             </Stack>
-          </Grid>
-        </Grid>
+          </Stack>
+        </Stack>
       </Container>
     </Stack>
   );

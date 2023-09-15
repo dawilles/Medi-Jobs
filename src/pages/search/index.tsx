@@ -1,64 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Grid, Stack } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 import { Header } from '@/components/common/Header';
 import { JobBanner } from '@/modules/job/components/JobBanner';
 import { AdvancedSearchBar } from '@/modules/job/components/AdvancedSearchBar';
 import { useLoadableData } from '@/hooks/useLoadableData';
 import { filterJobs } from '@/utils/filterJobs';
+
 import { jobAds } from '@/dataJobs';
-import { JobAd, JobsContentProps } from '@/types';
+import { JobAd, QueryParams } from '@/types';
 
 const loadJobs = async (): Promise<JobAd[]> => {
   // TODO: Fetch jobs from API
   return jobAds;
 };
 
-const JobsContent = ({ loadableState, filteredJobs }: JobsContentProps) => {
-  switch (loadableState.type) {
-    case 'loading':
-      return <div>Loading...</div>;
-    case 'error':
-      return <div>Error: {loadableState.error?.message}</div>;
-    case 'loaded':
-      return filteredJobs.map((job) => (
-        <Stack key={job.id} p={3}>
-          <JobBanner job={job} />
-        </Stack>
-      ));
-    default:
-      return null;
-  }
-};
-
 const Search = () => {
-  const { query } = useRouter();
-  const initialQuery = {
-    keyword: query.query as string,
-    categoryKey: query.category as string,
+  const { state: loadableState, reload } = useLoadableData(loadJobs, []);
+  const { query, push } = useRouter();
+  const searchParams: QueryParams = {
+    keyword: query.keyword as string,
+    categoryKey: query.categoryKey as string,
+    location: query.location as string,
+    contractType: query.contractType as string,
+    salaryFrom: Number(query.salaryFrom),
+    salaryTo: Number(query.salaryTo),
   };
-
-  const [searchParams, setSearchParams] = useState(initialQuery);
-  const { state: loadableState } = useLoadableData(loadJobs, undefined);
 
   useEffect(() => {
-    setSearchParams({
-      ...searchParams,
-      ...(query.query && { keyword: query.query as string }),
-      ...(query.category && { categoryKey: query.category as string }),
-    });
+    reload();
   }, [query]);
 
-  const handleAdvancedSearch = (params: {
-    keyword: string;
-    categoryKey: string;
-  }) => {
-    setSearchParams(params);
+  const handleAdvancedSearch = (params: QueryParams) => {
+    push({
+      pathname: '/search',
+      query: params,
+    });
   };
 
-  const allJobs = loadableState.type === 'loaded' ? loadableState.data : [];
-  const filteredJobs = filterJobs(allJobs, searchParams);
+  const content = (() => {
+    switch (loadableState.type) {
+      case 'loading':
+        return <Typography variant="h5">Loading...</Typography>;
+      case 'error':
+        return (
+          <Typography variant="h5">
+            Error: {loadableState.error?.message}
+          </Typography>
+        );
+      case 'loaded':
+        const filteredJobs = filterJobs(loadableState.data, searchParams);
+        if (filteredJobs.length === 0) {
+          return <Typography variant="h5">Brak dopasowanych ofert.</Typography>;
+        } else {
+          return filteredJobs.map((job) => (
+            <Stack key={job.id} p={3}>
+              <JobBanner job={job} />
+            </Stack>
+          ));
+        }
+      default:
+        return null;
+    }
+  })();
 
   return (
     <>
@@ -68,10 +73,7 @@ const Search = () => {
           <AdvancedSearchBar onSearch={handleAdvancedSearch} />
         </Grid>
         <Grid item xs={12} sm={8} md={9} mt={8}>
-          <JobsContent
-            loadableState={loadableState}
-            filteredJobs={filteredJobs}
-          />
+          {content}
         </Grid>
       </Grid>
     </>

@@ -1,12 +1,9 @@
 import React from 'react';
 import {
   Paper,
-  CardContent,
   Typography,
   IconButton,
   Stack,
-  Grid,
-  ListItemIcon,
 } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -20,56 +17,6 @@ type JobBannerProps = {
 
 export const JobBanner = ({ job }: JobBannerProps) => {
   return (
-    // <Paper elevation={5}>
-    //   <Stack direction="row" >
-    //     <CardContent
-    //       sx={{
-    //         flex: 2,
-    //       }}
-    //     >
-    //       <Link
-    //         href={`/jobpage/${job.id}`}
-    //         passHref
-    //         style={{ textDecoration: 'none' }}
-    //       >
-    //         <Typography variant="h3">{job.title}</Typography>
-    //       </Link>
-    //       <Typography variant="h4" color="text.secondary">
-    //         {job.user.username}
-    //       </Typography>
-    //       <Typography variant="body2" color="text.secondary" mt={1}>
-    //         {`Data dodania: ${job.dateAdded}`}
-    //       </Typography>
-    //     </CardContent>
-    //     <CardContent
-    //       sx={{
-    //         flex: 1,
-    //       }}
-    //     >
-    //       <Stack
-    //         direction={{ xs: 'column', sm: 'row' }}
-    //         justifyContent="flex-start"
-    //         p={1}
-    //       >
-    //         <LocationOnIcon />
-    //         <Typography variant="h5">{job.location}</Typography>
-    //       </Stack>
-    //       <Stack
-    //         direction={{ xs: 'column', sm: 'row' }}
-    //         justifyContent="flex-start"
-    //         alignItems="center"
-    //       >
-    //         <AttachMoneyIcon color="success" fontSize="large" />
-    //         <Typography variant="h3">{`${job.salary.from} - ${job.salary.to} ${job.salary.currency}`}</Typography>
-    //       </Stack>
-    //     </CardContent>
-    //     <Stack>
-    //       <IconButton aria-label="save job">
-    //         <StarBorderIcon color="secondary" />
-    //       </IconButton>
-    //     </Stack>
-    //   </Stack>
-    // </Paper>
     <Paper elevation={5}>
       <Stack direction="row" spacing={2} alignItems="center" p={2}>
         <Stack sx={{ flex: 2 }} spacing={1}>

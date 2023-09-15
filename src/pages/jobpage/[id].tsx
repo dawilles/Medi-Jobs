@@ -25,6 +25,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const id = context.params?.id;
+
+  if (!id) {
+    return { notFound: true };
+  }
+
   const job = jobAds.find((job) => job.id === Number(id));
 
   if (!job) {

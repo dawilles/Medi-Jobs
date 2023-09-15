@@ -9,7 +9,7 @@ export const SearchBar = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    router.push(`/search?query=${query}`);
+    router.push(`/search?keyword=${query}`);
   };
 
   return (

@@ -7,8 +7,18 @@ export const filterJobs = (jobAds: JobAd[], query: QueryParams): JobAd[] => {
     return filters.every((filterFunc) => filterFunc(job));
   };
 
-  return jobAds.filter(filterJob);
+  const filtered = jobAds.filter(filterJob);
+  return filtered;
 };
+
+const buildFilters = (query: QueryParams) => [
+  (job: JobAd) => filterByKeyword(job, query.keyword),
+  (job: JobAd) => filterByLocation(job, query.location),
+  (job: JobAd) => filterByContractType(job, query.contractType),
+  (job: JobAd) => filterByCategoryKey(job, query.categoryKey),
+  (job: JobAd) => filterBySalaryFrom(job, query.salaryFrom),
+  (job: JobAd) => filterBySalaryTo(job, query.salaryTo),
+];
 
 const filterByKeyword = (job: JobAd, keyword?: string): boolean => {
   if (!keyword) return true;
@@ -39,11 +49,3 @@ const filterBySalaryTo = (job: JobAd, salaryTo?: number): boolean => {
   if (!salaryTo) return true;
   return job.salary.from <= salaryTo && job.salary.to <= salaryTo;
 };
-const buildFilters = (query: QueryParams) => [
-  (job: JobAd) => filterByKeyword(job, query.keyword),
-  (job: JobAd) => filterByLocation(job, query.location),
-  (job: JobAd) => filterByContractType(job, query.contractType),
-  (job: JobAd) => filterByCategoryKey(job, query.categoryKey),
-  (job: JobAd) => filterBySalaryFrom(job, query.salaryFrom),
-  (job: JobAd) => filterBySalaryTo(job, query.salaryTo),
-];

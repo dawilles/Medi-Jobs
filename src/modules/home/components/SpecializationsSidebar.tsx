@@ -20,7 +20,7 @@ export const SpecializationsSidebar = ({
               key={index}
               button
               component="a"
-              href={`/search?category=${categoryKey}`}
+              href={`/search?categoryKey=${categoryKey}`}
             >
               <ListItemIcon>
                 <categoryData.icon color="secondary" />

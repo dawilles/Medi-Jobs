@@ -11,7 +11,7 @@ type ReturnType<Data, Params, Error> = {
   setState: React.Dispatch<
     React.SetStateAction<LoadableData<Data, Params, Error>>
   >;
-};
+}; 
 
 export const useLoadableData = <Data, Params = undefined, E = Error>(
   load: (params: Params) => Data | Promise<Data>,
