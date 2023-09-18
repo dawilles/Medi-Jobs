@@ -4,14 +4,17 @@ import { JobCard } from '@/components/job-components/JobCard';
 import { GetStaticPropsContext } from 'next';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import { Box, Stack } from '@mui/material';
 
 const JobPage = ({ job }: { job: JobAd }) => {
   return (
-    <>
+    <Stack direction="column" spacing={3} sx={{ minHeight: '100vh' }}>
       <Header />
-      <JobCard job={job} />
+      <Box sx={{ flex: 1 }}>
+        <JobCard job={job} />
+      </Box>
       <Footer />
-    </>
+    </Stack>
   );
 };
 
