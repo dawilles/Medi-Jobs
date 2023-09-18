@@ -1,15 +1,17 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { TextField, Button, Typography, Stack } from '@mui/material';
 
-export const SearchBar = () => {
-  const router = useRouter();
-
-  const [query, setQuery] = useState('');
-
+export const SearchBar = ({
+  onSearch,
+  query,
+  setQuery,
+}: {
+  onSearch: (query: string) => void;
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    router.push(`/search?keyword=${query}`);
+    onSearch(query);
   };
 
   return (

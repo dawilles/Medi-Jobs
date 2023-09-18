@@ -3,7 +3,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Stack } from '@mui/material';
 import { Categories } from '../data/categories';
 
 export const SpecializationsSidebar = ({
@@ -12,24 +11,20 @@ export const SpecializationsSidebar = ({
   categories: Categories;
 }) => {
   return (
-    <Stack spacing={2} pt={10}>
-      <List>
-        {Object.entries(categories).map(
-          ([categoryKey, categoryData], index) => (
-            <ListItem
-              key={index}
-              button
-              component="a"
-              href={`/search?categoryKey=${categoryKey}`}
-            >
-              <ListItemIcon>
-                <categoryData.icon color="secondary" />
-              </ListItemIcon>
-              <ListItemText primary={categoryData.label} />
-            </ListItem>
-          ),
-        )}
-      </List>
-    </Stack>
+    <List>
+      {Object.entries(categories).map(([categoryKey, categoryData], index) => (
+        <ListItem
+          key={index}
+          button
+          component="a"
+          href={`/search?categoryKey=${categoryKey}`}
+        >
+          <ListItemIcon>
+            <categoryData.icon color="secondary" />
+          </ListItemIcon>
+          <ListItemText primary={categoryData.label} />
+        </ListItem>
+      ))}
+    </List>
   );
 };
