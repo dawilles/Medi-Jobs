@@ -13,7 +13,7 @@ import { Grid, Stack } from '@mui/material';
 import { categories } from '@/modules/home/data/categories';
 import { getLatestJobs } from '@/utils/sortingNevestJobs';
 
-export const Home = () => {
+export default function Home() {
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -50,4 +50,4 @@ export const Home = () => {
       </Grid>
     </>
   );
-};
+}

@@ -1,11 +1,8 @@
 import React from 'react';
 import router, { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
-
 import { Header } from '@/components/common/Header';
-
 import { AdvancedSearchBar } from '@/modules/job/components/AdvancedSearchBar';
-
 import { QueryParams } from '@/types';
 import { Loader } from '@/modules/job/components/Loader';
 
