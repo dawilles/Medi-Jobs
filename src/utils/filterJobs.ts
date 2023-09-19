@@ -2,6 +2,7 @@ import { JobAd, QueryParams } from '@/types';
 
 export const filterJobs = (jobAds: JobAd[], query: QueryParams): JobAd[] => {
   const filters = buildFilters(query);
+  if (filters.length === 0) return jobAds;
 
   const filterJob = (job: JobAd): boolean => {
     return filters.every((filterFunc) => filterFunc(job));

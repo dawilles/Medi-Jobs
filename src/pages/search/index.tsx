@@ -1,23 +1,15 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { Grid, Stack, Typography } from '@mui/material';
+import React from 'react';
+import router, { useRouter } from 'next/router';
+import { Grid } from '@mui/material';
 
 import { Header } from '@/components/common/Header';
-import { JobBanner } from '@/modules/job/components/JobBanner';
+
 import { AdvancedSearchBar } from '@/modules/job/components/AdvancedSearchBar';
-import { useLoadableData } from '@/hooks/useLoadableData';
-import { filterJobs } from '@/utils/filterJobs';
 
-import { jobAds } from '@/dataJobs';
-import { JobAd, QueryParams } from '@/types';
-
-const loadJobs = async (): Promise<JobAd[]> => {
-  // TODO: Fetch jobs from API
-  return jobAds;
-};
+import { QueryParams } from '@/types';
+import { Loader } from '@/modules/job/components/Loader';
 
 const Search = () => {
-  const { state: loadableState, reload } = useLoadableData(loadJobs, []);
   const { query, push } = useRouter();
   const searchParams: QueryParams = {
     keyword: query.keyword as string,
@@ -28,52 +20,29 @@ const Search = () => {
     salaryTo: Number(query.salaryTo),
   };
 
-  useEffect(() => {
-    reload();
-  }, [query]);
-
   const handleAdvancedSearch = (params: QueryParams) => {
     push({
       pathname: '/search',
       query: params,
     });
   };
-
-  const content = (() => {
-    switch (loadableState.type) {
-      case 'loading':
-        return <Typography variant="h5">Loading...</Typography>;
-      case 'error':
-        return (
-          <Typography variant="h5">
-            Error: {loadableState.error?.message}
-          </Typography>
-        );
-      case 'loaded':
-        const filteredJobs = filterJobs(loadableState.data, searchParams);
-        if (filteredJobs.length === 0) {
-          return <Typography variant="h5">Brak dopasowanych ofert.</Typography>;
-        } else {
-          return filteredJobs.map((job) => (
-            <Stack key={job.id} p={3}>
-              <JobBanner job={job} />
-            </Stack>
-          ));
-        }
-      default:
-        return null;
-    }
-  })();
+  const handleReset = (resetForm: () => void) => {
+    router.push('/search');
+    resetForm();
+  };
 
   return (
     <>
       <Header />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4} md={3}>
-          <AdvancedSearchBar onSearch={handleAdvancedSearch} />
+          <AdvancedSearchBar
+            onSearch={handleAdvancedSearch}
+            onReset={handleReset}
+          />
         </Grid>
         <Grid item xs={12} sm={8} md={9} mt={8}>
-          {content}
+          <Loader searchParams={searchParams} />
         </Grid>
       </Grid>
     </>

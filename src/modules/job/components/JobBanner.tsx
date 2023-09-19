@@ -1,26 +1,17 @@
 import React from 'react';
-import {
-  Paper,
-  Typography,
-  IconButton,
-  Stack,
-} from '@mui/material';
+import Link from 'next/link';
+import { Paper, Typography, IconButton, Stack } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { JobAd } from '@/types';
-import Link from 'next/link';
 
-type JobBannerProps = {
-  job: JobAd;
-};
-
-export const JobBanner = ({ job }: JobBannerProps) => {
+export const JobBanner = ({ job }: { job: JobAd }) => {
   return (
     <Paper elevation={5}>
       <Stack direction="row" spacing={2} alignItems="center" p={2}>
         <Stack sx={{ flex: 2 }} spacing={1}>
-          <Link href={`/jobpage/${job.id}`}  style={{ textDecoration: 'none' }}>
+          <Link href={`/jobpage/${job.id}`} style={{ textDecoration: 'none' }}>
             <Typography variant="h3" color="primary">
               {job.title}
             </Typography>

@@ -1,6 +1,15 @@
-// still working on mobile 
+// still working on mobile
 import { JobAd } from '@/types';
-import { Paper, Typography, Chip, Grid, Button, Stack } from '@mui/material';
+import {
+  Paper,
+  Typography,
+  Chip,
+  Grid,
+  Button,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -14,9 +23,12 @@ type JobCardProps = {
 };
 
 export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <>
-      <Stack p={9}>
+      <Stack p={isMobile ? 2 : 7} mt={6}>
         <Paper
           elevation={7}
           sx={{
@@ -24,19 +36,19 @@ export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
           }}
         >
           <Grid container spacing={3}>
-            <Grid item xs={9}>
+            <Grid item xs={isMobile ? 12 : 9}>
               <Typography variant="h3" gutterBottom>
                 {job.title}
               </Typography>
             </Grid>
-            <Grid item xs={3} sx={{ textAlign: 'right' }}>
+            <Grid item xs={isMobile ? 12 : 3} >
               <Chip
                 label={job.categoryLabel}
                 variant="outlined"
                 color="primary"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={isMobile ? 12 : 6}>
               <Typography variant="subtitle1" gutterBottom>
                 <LocationOnIcon
                   color="error"
@@ -68,7 +80,7 @@ export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
                 {job.salary.negotiable && ' (do negocjacji)'}
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={isMobile ? 12 : 6}>
               <Typography variant="subtitle1" gutterBottom>
                 <CalendarTodayIcon
                   color="primary"
@@ -93,7 +105,7 @@ export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
                 {job.description}
               </Typography>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={isMobile ? 12 : 9}>
               <Typography variant="subtitle2">
                 <PersonIcon
                   color="secondary"
@@ -113,7 +125,7 @@ export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
                 Email: {job.user.email}
               </Typography>
             </Grid>
-            <Grid item xs={3} sx={{ textAlign: 'right' }}>
+            <Grid item xs={isMobile ? 12 : 3} sx={{ textAlign: 'right' }}>
               <Button
                 variant="contained"
                 color="secondary"
