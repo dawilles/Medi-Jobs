@@ -41,7 +41,7 @@ export const JobCard = ({ job, onApplyClick }: JobCardProps) => {
                 {job.title}
               </Typography>
             </Grid>
-            <Grid item xs={isMobile ? 12 : 3} >
+            <Grid item xs={isMobile ? 12 : 3} sx={{ textAlign: 'right' }}>
               <Chip
                 label={job.categoryLabel}
                 variant="outlined"

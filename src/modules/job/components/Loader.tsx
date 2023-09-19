@@ -14,17 +14,24 @@ export const Loader = ({ searchParams }: { searchParams: QueryParams }) => {
 
   switch (loadableState.type) {
     case 'loading':
-      return <Typography variant="h5">Loading...</Typography>;
+      return;
+      <Stack m={5}>
+        <Typography variant="h5">Loading...</Typography>
+      </Stack>;
     case 'error':
       return (
-        <Typography variant="h5">
-          Error: {loadableState.error?.message}
-        </Typography>
+        <Stack m={5}>
+          <Typography variant="h5">
+            Error: {loadableState.error?.message}
+          </Typography>
+        </Stack>
       );
     case 'loaded':
       const filteredJobs = filterJobs(loadableState.data, searchParams);
       return filteredJobs.length === 0 ? (
-        <Typography variant="h5">Brak dopasowanych ofert.</Typography>
+        <Stack m={5}>
+          <Typography variant="h5">Brak dopasowanych ofert.</Typography>
+        </Stack>
       ) : (
         filteredJobs.map((job) => (
           <Stack key={job.id} p={3}>

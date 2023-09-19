@@ -1,4 +1,3 @@
-// // still working on mobile
 import { Box, Container, Grid, Typography, Link, Stack } from '@mui/material';
 
 const styles = {
