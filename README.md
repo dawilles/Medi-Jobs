@@ -6,7 +6,7 @@ This project is a job board portal dedicated to the medical industry. It allows 
 
 ## 🌐 Live Demo
 
-Check out the live demo to see the portal in action: [Live Demo](). 
+Check out the live demo to see the portal in action: [Live Demo](https://starlit-buttercream-1a7226.netlify.app/). 
 
 ## 🚀 Getting Started
 
